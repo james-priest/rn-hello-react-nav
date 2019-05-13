@@ -5,8 +5,12 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    justifyContent: 'center'
+    paddingTop: 20
+  },
+  btnContainer: {
+    marginTop: 10
   },
   white: {
     backgroundColor: '#fff'
@@ -49,17 +53,19 @@ class HomeScreen extends React.Component {
       <View style={[styles.container, { backgroundColor: '#ee9' }]}>
         <Text>Home Screen</Text>
         <Text>Count: {this.state.count}</Text>
-        <Button
-          title="Go to Details"
-          onPress={() =>
-            /* 1. Navigate to the Details route with params */
-            this.props.navigation.navigate('Details', {
-              itemId: 86,
-              color: '#aef',
-              otherParam: 'anything you want here'
-            })
-          }
-        />
+        <View style={styles.btnContainer}>
+          <Button
+            title="Go to Details"
+            onPress={() =>
+              /* 1. Navigate to the Details route with params */
+              this.props.navigation.navigate('Details', {
+                itemId: 86,
+                color: '#aef',
+                otherParam: 'anything you want here'
+              })
+            }
+          />
+        </View>
       </View>
     );
   }
@@ -89,19 +95,27 @@ class DetailsScreen extends React.Component {
         <Text>Details Screen</Text>
         <Text>itemId: {JSON.stringify(itemId)}</Text>
         <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-        <Button
-          title="Go to Details... again"
-          onPress={() => navigation.push('Details', { color: '#eaf' })}
-        />
-        <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate('Home')}
-        />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-        <Button
-          title="Update the title"
-          onPress={() => navigation.setParams({ otherParam: 'Updated!' })}
-        />
+        <View style={styles.btnContainer}>
+          <Button
+            title="Go to Details... again"
+            onPress={() => navigation.push('Details', { color: '#eaf' })}
+          />
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            title="Go to Home"
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
+        <View style={styles.btnContainer}>
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            title="Update the title"
+            onPress={() => navigation.setParams({ otherParam: 'Updated!' })}
+          />
+        </View>
       </View>
     );
   }
